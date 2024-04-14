@@ -22,13 +22,15 @@ from EA.Entity import Attraction as EAttraction
 attraction_list = []
 import pymysql
 
-conn = pymysql.connect(host='roamassistantdatabase.cas2ra1clovs.us-east-1.rds.amazonaws.com'  # 连接名称，默认127.0.0.1
+'''conn = pymysql.connect(host='roamassistantdatabase.cas2ra1clovs.us-east-1.rds.amazonaws.com'  # 连接名称，默认127.0.0.1
                        , user='admin'  # 用户名
                        , passwd='guidegenius'  # 密码
                        , port=3306  # 端口，默认为3306
                        , db='roamassistant'  # 数据库名称
                        , charset='utf8'  # 字符编码
-                       )
+                       )'''
+
+conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', password='021006', db='SE2024')
 
 
 def retrieve_data(destination: str):
