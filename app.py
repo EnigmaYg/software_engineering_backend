@@ -13,17 +13,30 @@ def hello():
     return f'Hello, {name}!' if name else 'Hello, World!'
 
 
-@app.route('/travelplanner', methods=['GET'])
+@app.route('/tourPlan', methods=['GET'])
 def travel_planner():
-    departure = request.args.get('dep')
-    destination = request.args.get('des')
-    duration = request.args.get('dur')
-    begin_date = request.args.get('beg')
+    departure = request.args.get('departure')
+    destination = request.args.get('destination')
+    # duration = request.args.get('dur')
+    begin_date = request.args.get('start_time')
 
-    tp = scheduling(departure, destination, int(duration), begin_date)
+    tp = scheduling(departure, destination, 4, begin_date)
+
+    return json.loads(tp.toJSON())
+
+
+@app.route('/chat/simpleChat', methods=['POST'])
+def simple_chat():
+    # data = request.json
+    departure = request.args.get('departure')
+    destination = request.args.get('destination')
+    start_time = request.args.get('start_time')
+
+    tp = scheduling(departure, destination, 4, start_time)
+    print(tp)
 
     return json.loads(tp.toJSON())
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001)
+    app.run(host='0.0.0.0', port=9091, debug=True)
